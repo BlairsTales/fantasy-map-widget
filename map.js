@@ -6,7 +6,6 @@ document.getElementById('loadMap').addEventListener('click', () => {
     const mapUrl = document.getElementById('mapUrl').value.trim();
     const mapImage = document.getElementById('mapImage');
     
-    // Check if the URL is valid
     if (mapUrl) {
         mapImage.src = mapUrl; // Set the new image source
         mapImage.style.display = 'none'; // Initially hide the image until loaded
@@ -30,8 +29,6 @@ const targetTool = document.getElementById('locationTarget');
 targetTool.addEventListener('click', () => {
     targetTool.classList.toggle('active');
     targetTool.innerText = targetTool.classList.contains('active') ? 'Cancel' : 'Set A Location';
-
-    // Change cursor style based on the active state
     mapArea.style.cursor = targetTool.classList.contains('active') ? 'crosshair' : 'default';
     isFormOpen = false; // Reset form state when toggling the target mode
 });
@@ -39,48 +36,41 @@ targetTool.addEventListener('click', () => {
 // Show location form on map click
 mapArea.addEventListener('click', (e) => {
     if (targetTool.classList.contains('active') && !isFormOpen) {
-        // Get the map image's bounding rectangle
         const rect = mapImage.getBoundingClientRect();
+        const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+        const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
 
-        // Calculate the x and y coordinates relative to the image
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        showLocationForm(x, y);
+        showLocationForm(xPercent, yPercent);
     }
 });
 
-// Show the location form
-function showLocationForm(x, y, title = '', imageUrl = '', details = '') {
-    if (isFormOpen) return; // Prevent multiple forms
+// Show the location form with percentage-based coordinates
+function showLocationForm(xPercent, yPercent, title = '', imageUrl = '', details = '') {
+    if (isFormOpen) return;
 
-    isFormOpen = true; // Set the form open flag to true
+    isFormOpen = true;
 
     const formContainer = document.createElement('div');
     formContainer.className = 'form-container';
 
-    // Create title input
     const titleInput = document.createElement('input');
     titleInput.placeholder = "Enter location title";
     titleInput.className = 'form-input';
     titleInput.value = title;
     formContainer.appendChild(titleInput);
 
-    // Create image URL input
     const imageInput = document.createElement('input');
     imageInput.placeholder = "Enter image URL (optional)";
     imageInput.className = 'form-input';
     imageInput.value = imageUrl;
     formContainer.appendChild(imageInput);
 
-    // Create details input
     const detailsInput = document.createElement('textarea');
     detailsInput.placeholder = "Enter location details";
     detailsInput.className = 'form-input';
     detailsInput.value = details;
     formContainer.appendChild(detailsInput);
 
-    // Create buttons
     const cancelButton = document.createElement('button');
     cancelButton.innerText = "Cancel";
     cancelButton.addEventListener('click', () => {
@@ -100,7 +90,7 @@ function showLocationForm(x, y, title = '', imageUrl = '', details = '') {
         const details = detailsInput.value.trim();
 
         if (title) {
-            addMarker(x, y, title, imageUrl, details);
+            addMarker(xPercent, yPercent, title, imageUrl, details);
             formContainer.remove();
             isFormOpen = false;
             targetTool.classList.remove('active');
@@ -112,27 +102,28 @@ function showLocationForm(x, y, title = '', imageUrl = '', details = '') {
     });
     formContainer.appendChild(addButton);
 
-    formContainer.style.left = `${x}px`;
-    formContainer.style.top = `${y}px`;
+    formContainer.style.left = `${xPercent}%`;
+    formContainer.style.top = `${yPercent}%`;
     formContainer.style.position = 'absolute';
 
     mapArea.appendChild(formContainer);
 }
 
-// Add marker to the map
-function addMarker(x, y, title, imageUrl, details) {
+// Add marker using percentage-based positions
+function addMarker(xPercent, yPercent, title, imageUrl, details) {
     const marker = document.createElement('div');
     marker.className = 'marker';
-    marker.style.left = `${x}px`;
-    marker.style.top = `${y}px`;
+    marker.style.left = `${xPercent}%`;
+    marker.style.top = `${yPercent}%`;
+    marker.style.transform = 'translate(-50%, -50%)';
     marker.innerText = title;
 
     marker.onclick = function (e) {
-        e.stopPropagation(); // Prevent map click from triggering when marker is clicked
-        showLocationDetails(title, imageUrl, details, x, y);
+        e.stopPropagation();
+        showLocationDetails(title, imageUrl, details, xPercent, yPercent);
     };
 
-    markers.push({ title, imageUrl, details, x, y });
+    markers.push({ title, imageUrl, details, xPercent, yPercent });
     mapArea.appendChild(marker);
 }
 
@@ -173,7 +164,7 @@ function showLocationDetails(title, imageUrl, details, x, y) {
     document.body.appendChild(detailBox);
 }
 
-// Handle the "I am done" button click
+// Generate the widget code
 document.getElementById('doneButton').addEventListener('click', () => {
     const mapImage = document.getElementById('mapImage');
     const mapUrl = mapImage.src;
@@ -183,22 +174,15 @@ document.getElementById('doneButton').addEventListener('click', () => {
         return;
     }
 
-    const originalWidth = mapImage.naturalWidth;
-    const originalHeight = mapImage.naturalHeight;
-
-    // Start building the widget code
     let widgetContent = `
 <div class="widget" style="display: flex; font-family: Arial, sans-serif; background: #f5f2e8; border: 2px solid #8c7b6b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
     <div class="map-container" style="position: relative; width: 60%; border-right: 2px solid #8c7b6b;">
-        <img id="mapImageWidget" src="${mapUrl}" alt="Map" style="width: 100%; height: auto; display: block;" />
+        <img id="mapImageWidget" src="${mapUrl}" alt="Map" style="width: 100%; height: auto; display: block; object-fit: contain;" />
         <div class="markers-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
 
-    // Add markers to the widget content
     markers.forEach(marker => {
-        const left = (marker.x / originalWidth) * 100; // Calculate percentage position
-        const top = (marker.y / originalHeight) * 100; // Calculate percentage position
         widgetContent += `
-            <div class="widget-marker" style="position: absolute; left: ${left}%; top: ${top}%; transform: translate(-50%, -50%); cursor: pointer; background: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 5px; pointer-events: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" 
+            <div class="widget-marker" style="position: absolute; left: ${marker.xPercent}%; top: ${marker.yPercent}%; transform: translate(-50%, -50%); cursor: pointer; background: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 5px; pointer-events: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" 
                 onclick="showLocationDetails('${marker.title}', '${marker.imageUrl}', '${marker.details}')">
                 ${marker.title}
             </div>`;
@@ -207,25 +191,10 @@ document.getElementById('doneButton').addEventListener('click', () => {
     widgetContent += `
         </div>
     </div>
-    <div class="sidebar" style="width: 40%; padding: 20px; border-left: 2px solid #8c7b6b; background-color: #ac9f84; border-radius: 0 10px 10px 0; position: relative;">
-        <h2 style="margin-top: 0; color: #f7eee0; border-bottom: 2px solid #8c7b6b; padding-bottom: 10px; background-color: #291c0a; border-radius: 5px; padding: 10px; text-align: center;">Location Details</h2>
-        <div id="locationDetails" style="margin-top: 10px; color: #4a3c2f; font-size: 14px; padding: 10px; border-radius: 5px; background-color: efe0cb; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); min-height: 150px;">Select a marker to view details</div>
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: #8c7b6b;"></div>
-    </div>
-</div>
-<script>
-    function showLocationDetails(title, imageUrl, details) {
-        const detailsContainer = document.getElementById('locationDetails');
-        detailsContainer.innerHTML = '<h3 style="margin-bottom: 5px; color: #f7eee0; background-color: #4c4234; padding: 10px; border-radius: 5px; text-align: center;">' + title + '</h3>' + 
-        (imageUrl ? '<div style="text-align: center;"><img src="' + imageUrl + '" style="height:300px; border-radius: 4px; margin-bottom: 10px;" alt="' + title + '" /></div>' : '') +
-        '<p>' + details + '</p>';
-    }
-</script>`;
+</div>`;
 
-    // Display the widget content in the output area
     const codeOutput = document.getElementById('codeOutput');
     const generatedCode = document.getElementById('generatedCode');
-
-    generatedCode.value = widgetContent; // Set the textarea value
-    codeOutput.style.display = 'block'; // Show the output area
+    generatedCode.value = widgetContent;
+    codeOutput.style.display = 'block';
 });
