@@ -4,7 +4,7 @@ I have never found a free web app where you can generate a widget of an interact
 # Adding A Location
 After you click the "Target Location" button, you can click anywhere on your map image to add a location title, an image (optional), and description. 
 > [!NOTE]
-> It does not save your work, so if you leave or refresh the page, you will lose everything.
+> It does not save your work, so if you leave or refresh the page, you will lose everything. It also does not place coordinates correctly for small file sizes.
 
 ![image](https://github.com/user-attachments/assets/702fd4c0-eca8-44e6-926e-fd00d4dd876b)
 When you click "I am done," it will generate a code you can bring elsewhere.
@@ -12,7 +12,5 @@ When you click "I am done," it will generate a code you can bring elsewhere.
 
 
 # The Created Widget
-> [!IMPORTANT]
-> The widget is the main thing I am having trouble with. As of right now, the locations that come up in the widget are not where they were clicked in the editor. 
 
 ![image](https://github.com/user-attachments/assets/6b87ffa8-ff21-4517-96c9-a008f46cd863)
