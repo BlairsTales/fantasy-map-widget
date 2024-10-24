@@ -191,7 +191,20 @@ document.getElementById('doneButton').addEventListener('click', () => {
     widgetContent += `
         </div>
     </div>
-</div>`;
+    <div class="sidebar" style="width: 40%; padding: 20px; border-left: 2px solid #8c7b6b; background-color: #ac9f84; border-radius: 0 10px 10px 0; position: relative;">
+        <h2 style="margin-top: 0; color: #f7eee0; border-bottom: 2px solid #8c7b6b; padding-bottom: 10px; background-color: #291c0a; border-radius: 5px; padding: 10px; text-align: center;">Location Details</h2>
+        <div id="locationDetails" style="margin-top: 10px; color: #4a3c2f; font-size: 14px; padding: 10px; border-radius: 5px; background-color: efe0cb; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); min-height: 150px;">Select a marker to view details</div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: #8c7b6b;"></div>
+    </div>
+</div>
+<script>
+    function showLocationDetails(title, imageUrl, details) {
+        const detailsContainer = document.getElementById('locationDetails');
+        detailsContainer.innerHTML = '<h3 style="margin-bottom: 5px; color: #f7eee0; background-color: #4c4234; padding: 10px; border-radius: 5px; text-align: center;">' + title + '</h3>' + 
+        (imageUrl ? '<div style="text-align: center;"><img src="' + imageUrl + '" style="height:300px; border-radius: 4px; margin-bottom: 10px;" alt="' + title + '" /></div>' : '') +
+        '<p>' + details + '</p>';
+    }
+</script>`;
 
     const codeOutput = document.getElementById('codeOutput');
     const generatedCode = document.getElementById('generatedCode');
