@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map Widget Maker</title>
+    <link rel="stylesheet" href="mapstyle.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <h1 style="
+    background-color: #47361e; 
+    color: #ffffff; 
+    font-family: 'Metamorphous', serif; 
+    text-transform: uppercase; /* Added this line */
+    font-size: 2.5em; 
+    text-align: center; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    margin: 20px 0;
+">
+    <i class="fa-solid fa-map"></i> Interactive Map Widget Maker <i class="fa-solid fa-map"></i>
+</h1>
+        <!-- URL Input and Load Map Button -->
+        <div class="input-area">
+            <input type="text" id="mapUrl" placeholder="Enter map image URL">
+            <button id="loadMap" class="styled-button">Load Map</button>
+        </div>
+        
+              <!-- Toolbar for adding locations -->
+        <div class="toolbar">
+            <button id="locationTarget" class="styled-button"><i class="fa-solid fa-crosshairs"></i> Set A Location</button>
+        </div>
+
+        <!-- Map Area -->
+        <div id="mapArea">
+            <img id="mapImage" alt="Map" style="display: none;">
+            <div id="placeholder" class="placeholder">
+                <p>Enter a map URL and click "Load Map" to begin.</p>
+            </div>
+        </div>
+        <!-- Form for adding location details -->
+        <div class="form-container" id="formContainer" style="display: none;">
+            <input type="text" class="form-input" id="locationName" placeholder="Location Name">
+            <input type="text" class="form-input" id="locationImageUrl" placeholder="Image URL (optional)">
+            <textarea class="form-input" id="locationDescription" rows="4" placeholder="Description"></textarea>
+            <button id="saveLocation" class="styled-button"><i class="fa-solid fa-check"></i> Save Location</button>
+            <button id="cancelLocation" class="styled-button"><i class="fa-solid fa-x"></i> Cancel</button>
+        </div>
+
+<!-- Done Button to Generate Widget -->
+<button id="doneButton" class="generate-button"><i class="fa-solid fa-check"></i> I am done</button>
+
+<!-- Output area for the generated code -->
+<div id="codeOutput" class="info-message" style="display: none;">
+    <h2><i class="fa-solid fa-copy"></i> Copy this code:</h2>
+    <textarea id="generatedCode" style="width: 100%; height: 200px;" readonly></textarea>
+</div>
+
+    <script src="map.js"></script>
+</body>
+</html>
