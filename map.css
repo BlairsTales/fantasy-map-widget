@@ -1,0 +1,812 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f3e8; /* Light parchment color */
+     background-image: url('https://authorbriarcrawford.wordpress.com/wp-content/uploads/2024/07/untitled-design6.png');
+      background-size: cover; /* Ensures the background covers the viewport */
+  background-attachment: fixed; /* Keeps the background fixed in place */
+  background-position: center; /* Centers the background image */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+        margin-top: 30px;
+                margin-bottom: 30px;
+    padding: 20px;
+      background-image: url('https://authorbriarcrawford.wordpress.com/wp-content/uploads/2023/10/parch-2.png');
+         background-size: cover; /* Ensures the background covers the viewport */
+  background-attachment: fixed; /* Keeps the background fixed in place */
+  background-position: center; /* Centers the background image */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* Header Styles */
+header {
+  background-image: url('https://briarcrawford.neocities.org/Images/design-1319845_1920.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Header Top Section */
+.header-top {
+  display: flex;
+  align-items: center; /* Aligns items to the center */
+  padding: 10px 20px;
+}
+
+/* Adjust widths of individual sections in the header */
+.header-top .social-media-icons {
+  flex: 1 1 20%; /* Flex-grow, flex-shrink, flex-basis */
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Aligns social media icons to the left */
+}
+
+.header-top .logo-container {
+  flex: 2 1 60%; /* Adjust flex-basis to 60% of the header width */
+  display: flex;
+  justify-content: center;
+}
+
+.header-top {
+  position: relative; /* Ensure that the search bar is positioned relative to this container */
+  display: flex;
+  justify-content: space-between; /* Spread items across the header */
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header-top .search-bar {
+  position: absolute;
+  top: 20px; /* Adjust this value to control vertical positioning */
+  right: 20px; /* Adjust this value to control horizontal positioning */
+  display: flex;
+  align-items: center;
+}
+
+.header-top .search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 4px solid #2e1f13;
+  border-radius: 10px;
+  background-color: #d0bc9f;
+  color: #333;
+  width: 200px; /* Set a fixed width for the input */
+}
+
+.header-top .search-bar input::placeholder {
+  color: #888;
+}
+
+.header-top .search-bar button {
+  padding: 8px 12px;
+  border: 1px solid #2e1f13;
+  border-radius: 5px;
+  background-color: #3e5340;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.header-top .search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.top-right-icons {
+  position: absolute;
+  top: 20px; /* Adjust this value to control the vertical position */
+  left: 20px; /* Adjust this value to control the horizontal position */
+  background-color: #2d342f;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.top-right-icons a {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #fdf9f2;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.logo-container {
+  text-align: center; /* Centers the logo horizontally */
+  margin: 20px 0; /* Adjust spacing around the logo */
+}
+
+.logo-container a {
+  display: inline-block;
+  background: url('https://briarcrawford.neocities.org/Images/the-fantasy1-1.png') no-repeat center center;
+  background-size: contain; /* Ensures the logo scales properly */
+  height: 300px; /* Adjust the height to the desired size */
+  aspect-ratio: 2 / 1; /* Adjust the aspect ratio based on your image dimensions (width / height) */
+  width: auto; /* This will make the width adjust according to the aspect ratio */
+  text-indent: -9999px; /* Hides the text if any is there */
+}
+
+.header-top .logo-container img {
+  display: block;
+  width: 400px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.header-top .search-bar input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Navigation Bar Styles */
+nav {
+  background-color: #3e5340; /* Black background for navigation */
+  padding: 15px 0;
+  border: 2px solid #161d16; /* Outline color and width */
+  margin-top: 10px; /* Added space between header and nav */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #ffffff; /* Different color from navigation bar */
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 1px 2px 0 #000, /* Outline shadow */
+               -1px -1px 0 #000, 
+               1px -1px 0 #000, 
+               -1px 1px 0 #000; /* You can adjust the color and size */
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #161d16; /* Outline color and width */
+  background-color: #2c3e2b; /* Slightly different color for buttons */
+}
+
+nav ul li a:hover {
+  background-color: #555; /* Darker shade for hover */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column; /* Stack items vertically */
+    padding: 5px; /* Adjust padding for mobile */
+  }
+
+  .top-right-icons {
+    position: relative; /* Remove absolute positioning for mobile */
+    margin-bottom: 10px; /* Add space below icons */
+    text-align: center; /* Center the icons */
+  }
+
+  .logo-container {
+    margin: 10px 0; /* Reduce margin for mobile */
+  }
+
+  .search-bar {
+    position: relative; /* Remove absolute positioning for mobile */
+    margin-top: 10px; /* Space above search bar */
+    width: 100%; /* Make search bar full width */
+    display: flex; /* Ensure the search bar is a flex container */
+    justify-content: center; /* Center the search bar */
+  }
+
+  .search-bar input {
+    width: 80%; /* Set width for input field */
+    margin-right: 5px; /* Add margin to the right of input */
+  }
+
+  .search-bar button {
+    padding: 8px 12px;
+        font-family: 'arial', serif; /* Apply the Charm font */
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack navigation items vertically */
+    display: none; /* Hide menu by default */
+  }
+
+  nav.active ul {
+    display: flex; /* Show menu when active */
+  }
+
+  .menu-toggle {
+    display: block; /* Show hamburger menu */
+    font-size: 1.5rem;
+    color: #fef9ed;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+
+
+/* Optional: Change icon color on hover */
+.top-right-icons a:hover {
+    color: #dcccb5; /* Change this color to your preference */
+}
+
+.container {
+    text-align: center;
+    max-width: 1200px; /* Adjust the maximum width of your main content */
+    margin: 0 auto; /* Center the content */
+    padding: 20px;
+         margin-top: 30px; /* Aligns social media icons to the left */
+}
+
+.info-message {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f6eee2; /* Light background color */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.info-message i {
+    margin-right: 8px; /* Spacing between icon and text */
+    color: #47361e; /* Icon color */
+    font-size: 18px; /* Icon size */
+}
+
+.info-message i {
+    margin-right: 8px; /* Spacing between icon and text */
+    color: #47361e; /* Icon color */
+    font-size: 18px; /* Icon size */
+}
+
+
+.input-area {
+    margin-bottom: 15px;
+}
+
+.input-area input {
+    padding: 8px;
+    border: 2px solid #8b5a2b;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.input-area button,
+.generate-button {
+    background-color: #47361e;
+    color: #fff;
+    border: none;
+    padding: 12px 20px; /* Increase padding for better button size */
+    border-radius: 8px; /* More rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    font-size: 16px; /* Increase font size */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Add subtle shadow for a 3D effect */
+}
+
+.input-area button:hover,
+.generate-button:hover {
+    background-color: #a66a4b;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.input-area button:active,
+.generate-button:active {
+    transform: translateY(0); /* Reset position when active */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust shadow on click */
+}
+
+.placeholder {
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack icon and text vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 200px; /* Set a height for the placeholder area */
+    color: #3e2c1b; /* Adjust text color */
+    font-size: 24px; /* Adjust font size */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: semi-transparent background */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
+}
+
+
+.toolbar {
+    background-color: #47361e;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 0px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Center the button within the toolbar */
+        border-top-left-radius: 8px; /* Radius for the bottom left corner */
+    border-top-right-radius: 8px; /* Radius for the bottom right corner */
+}
+
+.styled-button {
+    background-color: #d0bda4;
+    color: #2f2312;
+    border: 2px solid #3e2c1b;
+    padding: 12px 20px; /* Larger padding for a better appearance */
+    border-radius: 10px; /* Rounded corners for a softer look */
+    font-size: 16px; /* Slightly larger font size */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.styled-button:hover {
+    background-color: #bfa785; /* Slightly lighter shade on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.styled-button:active {
+    transform: translateY(0); /* Return to original position when active */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjust shadow when active */
+}
+
+#mapArea {
+    position: relative;
+    margin-bottom: 10px;
+    border: 4px solid #47361e;
+    background-color: #f5deb3;
+    max-width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adding shadow */
+    border-bottom-left-radius: 8px; /* Radius for the bottom left corner */
+    border-bottom-right-radius: 8px; /* Radius for the bottom right corner */
+}
+
+
+#mapArea img {
+    max-width: 100%;
+    height: auto;
+}
+
+.marker, .widget-marker {
+    position: absolute;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #3e2c1b;
+    padding: 3px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%); /* Center the marker */
+}
+
+.marker img {
+    max-width: 100%; /* Adjust to ensure it scales properly */
+    height: auto;
+}
+
+.form-container {
+    position: absolute;
+    background-color: #f6eee2;
+    border: 2px solid #8b5a2b;
+    padding: 20px; /* Increase padding for better spacing */
+    border-radius: 12px; /* Softer, more rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    z-index: 10; /* Ensure form appears on top */
+    width: 500px; /* Set a fixed width for consistency */
+    max-width: 90%; /* Make it responsive */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Styling for inputs and textarea */
+.form-input {
+    width: 100%; /* Full width */
+    padding: 10px; /* More padding for comfort */
+    margin-bottom: 10px; /* Space between inputs */
+    border: 2px solid #8b5a2b; /* Match border color */
+    border-radius: 6px; /* Rounded corners */
+    font-size: 14px; /* Adjust font size for readability */
+    box-sizing: border-box; /* Include padding and border in width */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+}
+
+.form-input:focus {
+    border-color: #a66a4b; /* Highlight border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Styling for buttons */
+.form-container button {
+    background-color: #8b5a2b;
+    color: #fff;
+    border: none;
+    padding: 10px 15px; /* Padding for buttons */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    margin-top: 10px; /* Space above buttons */
+    font-size: 14px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.1s; /* Transition for hover effect */
+    width: 100%; /* Full-width buttons */
+    box-sizing: border-box; /* Ensure the button respects its container's width */
+}
+
+.form-container button:hover {
+    background-color: #a66a4b; /* Lighten on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.form-container button:active {
+    transform: translateY(0); /* Return to original position */
+}
+
+.location-details-box {
+    position: absolute; /* Position relative to #mapImageContainer */
+    background-color: #f6eee2;
+    border: 2px solid #8b5a2b;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    max-width: 90%; /* Allow the box to scale on smaller screens */
+    box-sizing: border-box;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+
+.location-details-box h3 {
+    margin-top: 0; /* Remove top margin for better alignment */
+    color: #8b5a2b; /* Change title color for emphasis */
+    font-family: 'Arial', sans-serif; /* Consistent font-family */
+}
+
+.location-details-box img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Slight rounding of image corners */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.location-details-box p {
+    margin: 10px 0; /* Spacing around details */
+    color: #333; /* Darker text color for better readability */
+    line-height: 1.4; /* Improved line height for better readability */
+}
+
+.location-details-box button {
+    background-color: #8b5a2b; /* Same color as the border for consistency */
+    color: white; /* White text for contrast */
+    border: none; /* Remove default button border */
+    padding: 8px 12px; /* Padding for button */
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.location-details-box button:hover {
+    background-color: #704d3a; /* Darker shade on hover */
+}
+
+#mapImageContainer {
+    position: relative; /* This ensures markers and info boxes are positioned inside the container */
+    margin-bottom: 10px;
+    border: 4px solid #47361e;
+    background-color: #f5deb3;
+    max-width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Adjusted to smooth out the corners */
+}
+
+#mapArea img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .header-logo img {
+        max-width: 200px; /* Smaller logo on smaller screens */
+    }
+
+    .container {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+
+    .form-container {
+        width: 90%; /* Make the form container take more width */
+    }
+
+    .marker img {
+        max-width: 80px; /* Smaller marker images on small screens */
+    }
+}
+.crosshair-cursor {
+    cursor: crosshair; /* Changes cursor to a crosshair */
+}
+.footer-background {
+    background: url('https://briarcrawford.neocities.org/Map/mapmaker(2).jpg') no-repeat center center; /* Use the same background image */
+    background-size: cover; /* Ensure the entire image is visible */
+    width: 100%; /* Full width of the viewport */
+    min-height: 150px; /* Set a minimum height for the footer */
+    padding: 20px 0; /* Adjust padding as needed */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* Adding shadow at the top */
+    border-top: 4px solid #47361e; /* Adding a top border */
+}
+
+.footer-text {
+    color: #3e2c1b; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+}
+
+.social-icons {
+    text-align: center; /* Center the icons */
+    margin-top: 10px; /* Space between text and icons */
+}
+
+.social-icons a {
+    color: #3e2c1b; /* Icon color */
+    margin: 0 10px; /* Space between icons */
+    font-size: 24px; /* Adjust icon size */
+    text-decoration: none; /* Remove underline */
+}
+
+.social-icons a:hover {
+    color: #8b5a2b; /* Change color on hover */
+}
+
+/* Marker adjustments */
+.marker, .widget-marker {
+    position: absolute; /* Ensure markers are positioned absolutely within their container */
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #3e2c1b;
+    padding: 3px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%); /* Center the marker */
+}
+
+/* Optional: Adjust marker styles */
+.marker img {
+    max-width: 100%; /* Adjust to ensure it scales properly */
+    height: auto;
+}
+
+/* Ensures the location details box is displayed in the correct position */
+.location-details-box {
+    position: absolute; /* Position relative to #mapImageContainer */
+    background-color: #f6eee2;
+    border: 2px solid #8b5a2b;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    max-width: 90%; /* Allow the box to scale on smaller screens */
+    box-sizing: border-box;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Adjust the display of the location details box */
+.location-details-box h3 {
+    margin-top: 0; /* Remove top margin for better alignment */
+    color: #8b5a2b; /* Change title color for emphasis */
+    font-family: 'Arial', sans-serif; /* Consistent font-family */
+}
+
+.location-details-box img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Slight rounding of image corners */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.location-details-box p {
+    margin: 10px 0; /* Spacing around details */
+    color: #333; /* Darker text color for better readability */
+    line-height: 1.4; /* Improved line height for better readability */
+}
+
+.location-details-box button {
+    background-color: #8b5a2b; /* Same color as the border for consistency */
+    color: white; /* White text for contrast */
+    border: none; /* Remove default button border */
+    padding: 8px 12px; /* Padding for button */
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.location-details-box button:hover {
+    background-color: #704d3a; /* Darker shade on hover */
+}
+
+/* Footer Styles */
+footer {
+    background-image: url('https://briarcrawford.neocities.org/Images/design-1319845_1920.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Footer Top Section */
+.footer-top {
+    display: flex;
+    align-items: center; /* Aligns items to the center */
+    padding: 10px 20px;
+}
+
+/* Adjust widths of individual sections in the footer */
+.footer-top .bottom-left-icons {
+    flex: 1 1 20%; /* Flex-grow, flex-shrink, flex-basis */
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Aligns social media icons to the left */
+}
+
+.footer-top .footer-logo-container {
+    flex: 2 1 60%; /* Adjust flex-basis to 60% of the footer width */
+    display: flex;
+    justify-content: center;
+}
+
+.footer-top {
+    position: relative; /* Ensure that the footer search bar is positioned relative to this container */
+    display: flex;
+    justify-content: space-between; /* Spread items across the footer */
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.footer-top .footer-search-bar {
+    position: absolute;
+    top: 20px; /* Adjust this value to control vertical positioning */
+    right: 20px; /* Adjust this value to control horizontal positioning */
+    display: flex;
+    align-items: center;
+}
+
+.footer-top .footer-search-bar input {
+    flex: 1;
+    padding: 8px;
+    border: 4px solid #2e1f13;
+    border-radius: 10px;
+    background-color: #d0bc9f;
+    color: #333;
+    width: 200px; /* Set a fixed width for the input */
+}
+
+.footer-top .footer-search-bar input::placeholder {
+    color: #888;
+}
+
+.footer-top .footer-search-bar button {
+    padding: 8px 12px;
+    border: 1px solid #2e1f13;
+    border-radius: 5px;
+    background-color: #3e5340;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.footer-top .footer-search-bar button:hover {
+    background-color: #0056b3;
+}
+
+.bottom-left-icons {
+    position: absolute;
+    top: 20px; /* Adjust this value to control the vertical position */
+    left: 20px; /* Adjust this value to control the horizontal position */
+    background-color: #2d342f;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-left-icons a {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #fdf9f2;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.footer-logo-container {
+    text-align: center; /* Centers the logo horizontally */
+    margin: 20px 0; /* Adjust spacing around the logo */
+}
+
+.footer-logo-container a {
+    display: inline-block;
+    background: url('https://briarcrawford.neocities.org/Images/the-fantasy1-1.png') no-repeat center center;
+    background-size: contain; /* Ensures the logo scales properly */
+    height: 300px; /* Adjust the height to the desired size */
+    aspect-ratio: 2 / 1; /* Adjust the aspect ratio based on your image dimensions (width / height) */
+    width: auto; /* This will make the width adjust according to the aspect ratio */
+    text-indent: -9999px; /* Hides the text if any is there */
+}
+
+.footer-top .footer-logo-container img {
+    display: block;
+    width: 400px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Footer Navigation Bar Styles */
+nav {
+    background-color: #3e5340; /* Black background for navigation */
+    padding: 15px 0;
+    border: 2px solid #161d16; /* Outline color and width */
+    margin-top: 10px; /* Added space between footer and nav */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffffff; /* Different color from navigation bar */
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 1px 2px 0 #000, /* Outline shadow */
+                -1px -1px 0 #000, 
+                1px -1px 0 #000, 
+                -1px 1px 0 #000; /* You can adjust the color and size */
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #161d16; /* Outline color and width */
+    background-color: #2c3e2b; /* Slightly different color for buttons */
+}
+
+nav ul li a:hover {
+    background-color: #555; /* Darker shade for hover */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column; /* Stack items vertically */
+        padding: 5px; /* Adjust padding for mobile */
+    }
+
+    .bottom-left-icons {
+        position: relative; /* Remove absolute positioning for mobile */
+        margin-bottom: 10px; /* Add space below icons */
+        text-align: center; /* Center the icons */
+    }
+
+    .footer-logo-container {
+        margin: 10px 0; /* Reduce margin for mobile */
+    }
+
+    .footer-search-bar {
+        position: relative; /* Remove absolute positioning for mobile */
+        margin-top: 10px; /* Space above search bar */
+        width: 100%; /* Make search bar full width */
+        display: flex; /* Ensure the search bar is a flex container */
+        justify-content: center; /* Center the search bar */
+    }
+
+    .footer-search-bar input {
+        width: 80%; /* Set width for input field */
+        margin-right: 5px; /* Add margin to the right of input */
+    }
+
+    .footer-search-bar button {
+
