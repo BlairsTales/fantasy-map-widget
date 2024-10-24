@@ -163,7 +163,6 @@ function showLocationDetails(title, imageUrl, details, x, y) {
 
     document.body.appendChild(detailBox);
 }
-
 // Generate the widget code
 document.getElementById('doneButton').addEventListener('click', () => {
     const mapImage = document.getElementById('mapImage');
@@ -175,15 +174,15 @@ document.getElementById('doneButton').addEventListener('click', () => {
     }
 
     let widgetContent = `
-<div class="widget" style="display: flex; font-family: Arial, sans-serif; background: #f5f2e8; border: 2px solid #8c7b6b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
-    <div class="map-container" style="position: relative; width: 60%; border-right: 2px solid #8c7b6b;">
+<div class="widget" style="display: flex; flex-direction: column; font-family: Arial, sans-serif; background: #f5f2e8; border: 2px solid #8c7b6b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
+    <div class="map-container" style="position: relative; width: 100%; flex: 1;">
         <img id="mapImageWidget" src="${mapUrl}" alt="Map" style="width: 100%; height: auto; display: block; object-fit: contain;" />
         <div class="markers-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
 
     markers.forEach(marker => {
         widgetContent += `
             <div class="widget-marker" style="position: absolute; left: ${marker.xPercent}%; top: ${marker.yPercent}%; transform: translate(-50%, -50%); cursor: pointer; background: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 5px; pointer-events: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" 
-                onclick="showLocationDetails('${marker.title}', '${marker.imageUrl}', '${marker.details}')">
+                onclick="showLocationDetails('${marker.title}', '${marker.imageUrl}', '${marker.details}', event)">
                 ${marker.title}
             </div>`;
     });
@@ -191,18 +190,105 @@ document.getElementById('doneButton').addEventListener('click', () => {
     widgetContent += `
         </div>
     </div>
-    <div class="sidebar" style="width: 40%; padding: 20px; border-left: 2px solid #8c7b6b; background-color: #ac9f84; border-radius: 0 10px 10px 0; position: relative;">
-        <h2 style="margin-top: 0; color: #f7eee0; border-bottom: 2px solid #8c7b6b; padding-bottom: 10px; background-color: #291c0a; border-radius: 5px; padding: 10px; text-align: center;">Location Details</h2>
-        <div id="locationDetails" style="margin-top: 10px; color: #4a3c2f; font-size: 14px; padding: 10px; border-radius: 5px; background-color: efe0cb; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); min-height: 150px;">Select a marker to view details</div>
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: #8c7b6b;"></div>
-    </div>
 </div>
+<style>
+    /* Make the widget layout responsive */
+    .widget {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .map-container {
+        width: 100%;
+    }
+    .location-details-box {
+        position: absolute;
+        background: #f5f2e8;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #8c7b6b;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        max-width: 300px;
+        z-index: 1000;
+    }
+    .location-details-box img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .location-details-box button {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 5px;
+        background-color: #8c7b6b;
+        color: #f7eee0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .location-details-box button:hover {
+        background-color: #705f50;
+    }
+    @media (max-width: 768px) {
+        .widget {
+            flex-direction: column;
+        }
+    }
+</style>
 <script>
-    function showLocationDetails(title, imageUrl, details) {
-        const detailsContainer = document.getElementById('locationDetails');
-        detailsContainer.innerHTML = '<h3 style="margin-bottom: 5px; color: #f7eee0; background-color: #4c4234; padding: 10px; border-radius: 5px; text-align: center;">' + title + '</h3>' + 
-        (imageUrl ? '<div style="text-align: center;"><img src="' + imageUrl + '" style="height:300px; border-radius: 4px; margin-bottom: 10px;" alt="' + title + '" /></div>' : '') +
-        '<p>' + details + '</p>';
+    function showLocationDetails(title, imageUrl, details, event) {
+        // Remove any existing detail boxes before creating a new one
+        const existingDetailBox = document.querySelector('.location-details-box');
+        if (existingDetailBox) {
+            existingDetailBox.remove();
+        }
+
+        // Create a new detail box
+        const detailBox = document.createElement('div');
+        detailBox.className = 'location-details-box';
+
+        // Add title
+        const titleElement = document.createElement('h3');
+        titleElement.style.margin = '0 0 5px';
+        titleElement.style.color = '#4c4234';
+        titleElement.style.textAlign = 'center';
+        titleElement.textContent = title;
+        detailBox.appendChild(titleElement);
+
+        // Add image if available
+        if (imageUrl) {
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            imageElement.alt = title;
+            imageElement.style.width = '100%';
+            imageElement.style.borderRadius = '5px';
+            imageElement.style.marginBottom = '10px';
+            detailBox.appendChild(imageElement);
+        }
+
+        // Add details
+        const detailsElement = document.createElement('p');
+        detailsElement.style.margin = '0';
+        detailsElement.style.color = '#4a3c2f';
+        detailsElement.textContent = details;
+        detailBox.appendChild(detailsElement);
+
+        // Add close button
+        const closeButton = document.createElement('button');
+        closeButton.innerText = 'Close';
+        closeButton.addEventListener('click', () => {
+            detailBox.remove();
+        });
+        detailBox.appendChild(closeButton);
+
+        // Position the detail box at the marker location relative to the map container
+        const mapContainer = document.querySelector('.map-container');
+        detailBox.style.left = \`\${event.clientX - mapContainer.getBoundingClientRect().left}px\`;
+        detailBox.style.top = \`\${event.clientY - mapContainer.getBoundingClientRect().top}px\`;
+
+        // Append the detail box to the map container
+        mapContainer.appendChild(detailBox);
     }
 </script>`;
 
