@@ -5,7 +5,7 @@ let markers = []; // Array to store marker data
 document.getElementById('loadMap').addEventListener('click', () => {
     const mapUrl = document.getElementById('mapUrl').value.trim();
     const mapImage = document.getElementById('mapImage');
-    
+
     if (mapUrl) {
         mapImage.src = mapUrl; // Set the new image source
         mapImage.style.display = 'none'; // Initially hide the image until loaded
@@ -120,7 +120,13 @@ function addMarker(xPercent, yPercent, title, imageUrl, details) {
 
     marker.onclick = function (e) {
         e.stopPropagation();
-        showLocationDetails(title, imageUrl, details, xPercent, yPercent);
+        // Get the coordinates of the marker click
+        const rect = mapImage.getBoundingClientRect();
+        const markerX = e.clientX - rect.left;
+        const markerY = e.clientY - rect.top;
+
+        // Show location details at the click position
+        showLocationDetails(markerX, markerY, title, imageUrl, details);
     };
 
     markers.push({ title, imageUrl, details, xPercent, yPercent });
@@ -128,7 +134,13 @@ function addMarker(xPercent, yPercent, title, imageUrl, details) {
 }
 
 // Show location details at click position
-function showLocationDetails(title, imageUrl, details, x, y) {
+function showLocationDetails(clientX, clientY, title, imageUrl, details) {
+    // Remove any existing detail boxes before creating a new one
+    const existingDetailBox = document.querySelector('.location-details-box');
+    if (existingDetailBox) {
+        existingDetailBox.remove();
+    }
+
     const detailBox = document.createElement('div');
     detailBox.className = 'location-details-box';
 
@@ -155,14 +167,15 @@ function showLocationDetails(title, imageUrl, details, x, y) {
     });
     detailBox.appendChild(exitButton);
 
-    // Position detailBox relative to the clicked position
-    const rect = mapImage.getBoundingClientRect();
+    // Position the detail box based on click coordinates
     detailBox.style.position = 'absolute';
-    detailBox.style.left = `${rect.left + x}px`;
-    detailBox.style.top = `${rect.top + y}px`;
+    detailBox.style.left = `${clientX + 10}px`; // Add some offset from click position
+    detailBox.style.top = `${clientY}px`; // Align with the click position
 
-    document.body.appendChild(detailBox);
+    // Append the detail box to the map area (not the body)
+    mapArea.appendChild(detailBox);
 }
+
 // Generate the widget code
 document.getElementById('doneButton').addEventListener('click', () => {
     const mapImage = document.getElementById('mapImage');
