@@ -12,5 +12,4 @@ When you click "I am done," it will generate a code you can bring elsewhere.
 
 
 # The Created Widget
-
-![image](https://github.com/user-attachments/assets/6b87ffa8-ff21-4517-96c9-a008f46cd863)
+![image](https://github.com/user-attachments/assets/230b0c42-8e37-4056-8e8c-f37273b4751a)
