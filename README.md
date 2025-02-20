@@ -1,5 +1,5 @@
 ![image](https://github.com/user-attachments/assets/9d14401d-4fe8-4c66-a5dd-bc3f5d95a2b4)
-I have never found a free web app where you can generate a widget of an interactive map, so I am trying to build one. However, it still has flaws that I need help fixing. I have dyscalculia, and this is as far as I can get.
+I have never found a free web app where you can generate a widget of an interactive map, so I am trying to build one. However, it still has flaws that I need help fixing. I have dyscalculia, and this is as far as I can get. You can try it for yourself here: https://fantasyfablesguild.neocities.org/Map/map
 
 # Adding A Location
 After you click the "Target Location" button, you can click anywhere on your map image to add a location title, an image (optional), and description. 
